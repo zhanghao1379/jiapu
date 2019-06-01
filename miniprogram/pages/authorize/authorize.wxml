@@ -1,0 +1,11 @@
+<view>
+<view class="h1">需要您的授权</view>
+
+<view class='p'>
+    九州家谱需要获取您的微信头像和昵称为你服务，请点击确认授权按钮进行授权，谢谢。
+</view>
+
+  <view class='pad'>
+  <button class='block' open-type="getUserInfo" bindgetuserinfo='handleConfirmBtnTap'>确认授权</button> 
+  </view>
+</view>

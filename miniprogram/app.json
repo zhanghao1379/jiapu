@@ -1,0 +1,68 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    "pages/openapi/openapi",
+    "pages/appellation/appellation",
+    "pages/appellation/help/help",
+    "pages/welcome/welcome",
+    "pages/authorize/authorize",
+    "pages/mine/add-self/add-self",
+    "pages/mine/mod-self/mod-self",
+    "pages/clansman/add-child/mother-add-child",
+    "pages/clansman/add-child/father-add-child",
+    "pages/clansman/add-mate/add-mate",
+    "pages/clansman/add-father/add-father",
+    "pages/clansman/add-mother/add-mother",
+    "pages/clansman/mod/mod-main-detail",
+    "pages/clansman/mod/mod-main",
+    "pages/clansman/mod/mod-mate",
+    "pages/mine/about/about",
+    "pages/mine/help/help",
+    "pages/mine/index",
+    "pages/birthday/list",
+    "pages/birthday-alert/setting"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "家谱",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#f10b2e",
+    "backgroundColor": "#fefefe",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "家谱树",
+        "iconPath": "images/icon-tree.png",
+        "selectedIconPath": "images/icon-tree-selected.png"
+      },
+      {
+        "pagePath": "pages/appellation/appellation",
+        "text": "亲戚称谓",
+        "iconPath": "images/icon-appellation.png",
+        "selectedIconPath": "images/icon-appellation-selected.png"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的",
+        "iconPath": "images/icon-mine.png",
+        "selectedIconPath": "images/icon-mine-selected.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "clannode": "mycomponent/clannode"
+  }
+}

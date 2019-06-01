@@ -1,0 +1,16 @@
+<view>
+  <view class='h1'>
+    九州家谱帮助
+  </view>
+  <view class='p'>
+      请发送邮件到yangyan@google.com 
+  </view>
+
+
+    
+  <view class='pad'>
+    <button type='primary' class='block' bindtap='handleBackBtnTap'>
+      返回
+    </button>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+<scroll-view scroll-y style='height:100vh'>
+  <view wx:for="{{list}}" wx:key="id" class='setting-item'>
+    <text>{{item.name}}</text>
+    <switch checked></switch>
+  </view>
+</scroll-view>

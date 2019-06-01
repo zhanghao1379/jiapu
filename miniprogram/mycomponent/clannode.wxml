@@ -1,0 +1,19 @@
+<view class="child-node {{nodeOrderClass}}"  >
+  <view class='parents-node'>
+    <view class="parents-main-node" data-id='{{clansman._id}}' bindtap='handleMainNodeTap'>
+    {{clansman.name}}</view>
+
+    <view class='parents-mate-nodes' >
+      <view class='parents-mate-node'
+       wx:for='{{mates}}' wx:key='_id'       
+       bindtap='handleMateNodeTap' 
+       data-id="{{item._id}}">
+         {{item.name}}
+      </view>
+    </view>
+  </view>
+  <view class='child-nodes' wx:if='{{children.length>0}}'>
+      <clannode wx:for='{{children}}' wx:key='_id'
+      clansman="{{item}}" ></clannode>
+  </view>
+</view>  
