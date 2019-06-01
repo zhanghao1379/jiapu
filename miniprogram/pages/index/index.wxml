@@ -1,3 +1,12 @@
-<scroll-view scroll-x scroll-y style='width:100vh;height:100vh'>
-  <clannode clansman="{{item}}" wx:for="{{roots}}" wx:key="*this"></clannode>
+<scroll-view
+  scroll-x="{{ true }}"
+  scroll-y="{{ true }}"
+  style="width:100vh;height:100vh"
+>
+  <clannode
+    clansman="{{ item }}"
+    wx:for="{{ roots }}"
+    wx:for-item="item"
+    wx:for-index="index"
+  ></clannode>
 </scroll-view>

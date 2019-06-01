@@ -100,6 +100,7 @@ ClansmanDao.prototype.load= function (_id) {
     
     const row = res.data;
     if (row) {
+      console.log(row2entity(row))
       return row2entity(row);
     } else {
       return null;
@@ -122,7 +123,7 @@ ClansmanDao.prototype.selectOne = function(where) {
 ClansmanDao.prototype.selectChildren = function (where){
   return this.selectMany(where,[["childOrder","asc"]]);
 }
-ClansmanDao.prototype.selectMany = function(where, orderBys) {
+ClansmanDao.prototype.selectMany = function(where = null, orderBys) {
   let query = this.db.collection(COLLECTION_TYPE)
     .where(where);
   if (orderBys) {
@@ -141,6 +142,19 @@ ClansmanDao.prototype.selectMany = function(where, orderBys) {
       return [];
     }
   });
+};
+ClansmanDao.prototype.selectAll = function() {
+    let query = this.db.collection(COLLECTION_TYPE)
+
+    return query.get().then(res => {
+        const rows = res.data;
+        if (rows && rows.length) {
+          console.log(rows.map(row2entity))
+            return rows.map(row2entity);
+        } else {
+            return [];
+        }
+    });
 };
 /**
  * 查找生日大于指定时间的族人

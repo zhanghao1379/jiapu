@@ -1,6 +1,6 @@
 <scroll-view class='layout-vbox' scroll-y style='height:100%'>
   <view class='layout-row gap'>
-    <image class="small-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <image class="small-avatar"  src="{{userInfo.avatarUrl}}" mode="cover"></image>
     <text space='emsp'> {{userInfo.nickName}}</text>
   </view>
   <view class='setting'>

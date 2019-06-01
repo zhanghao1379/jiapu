@@ -18,7 +18,7 @@ function ClansmanEntity() {
   this.motherId;
   //配偶
   this.mateIds = [];
-  //哥哥姐姐 
+  //哥哥姐姐
   this.previousSiblingId = null;
   //弟弟妹妹
   this.nextSiblingId = null;
@@ -26,6 +26,8 @@ function ClansmanEntity() {
   this.childOrder;
   //第几世(所属层级，从1开始))
   this.height;
+  //分组
+  this.group;
 
   //创建时间
   this.createTime = Date.now();
@@ -40,7 +42,7 @@ ClansmanEntity.of = function(o) {
 
   e.birthday = o.birthday || null;
   e.liveWhere = o.liveWhere || null;
-  
+
   e.recentPhotoURL = o.recentPhotoURL || null;
   e.fatherId = Object.ifNOU(o.fatherId,null);
   e.motherId = Object.ifNOU(o.motherId,null);
@@ -66,7 +68,7 @@ ClansmanEntity.prototype.deleteMateId = function (mid) {
 
     for(let i=0;i<this.mateIds.length;i++){
       if(this.mateIds[i]===mid){
-        this.mateIds.splice(i,1);  
+        this.mateIds.splice(i,1);
         return true;
       }
     }

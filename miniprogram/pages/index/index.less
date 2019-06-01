@@ -2,6 +2,7 @@ Page {
   font-size: 13px;
   overflow: auto;
 }
+
 .child-nodes {
   position: relative;
   display: flex;
@@ -11,6 +12,7 @@ Page {
   padding-top: 32rpx;
   --border: 1px solid black;
 }
+
 .child-nodes::before {
   content: '';
   position: absolute;
@@ -20,6 +22,7 @@ Page {
   width: 0;
   height: 1rem;
 }
+
 .child-node {
   position: relative;
   padding-top: 15px;
@@ -27,9 +30,11 @@ Page {
   padding-right: 5px;
   text-align: center;
 }
+
 .parents-node {
   --border: 1px solid black;
 }
+
 .parents-main-node {
   display: inline-block;
   border: 1px solid #bbb;
@@ -38,12 +43,14 @@ Page {
   padding: 5px;
   cursor: pointer;
 }
+
 .parents-mate-nodes {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: flex-start;
 }
+
 .parents-mate-node {
   margin: 0 2px;
   cursor: pointer;
@@ -52,6 +59,7 @@ Page {
   padding: 5px;
   font-size: 90%;
 }
+
 /*draw the connectors*/
 .child-node::before {
   content: '';
@@ -62,6 +70,7 @@ Page {
   width: 50%;
   height: 10px;
 }
+
 .child-node::after {
   content: '';
   position: absolute;
@@ -71,30 +80,39 @@ Page {
   height: 10px;
   border-left: 1px solid #ccc;
 }
+
 .child-node.last-child::before {
   border-right: 1px solid #ccc;
   border-radius: 0 5px 0 0;
 }
+
 .child-node.first-child::after {
   border-radius: 5px 0 0 0;
 }
+
 .child-node.first-child::before,
 .child-node.last-child::after {
   border: none;
 }
+
 /*orphan node*/
 .child-node.only-child::after,
 .child-node.only-child::before {
   display: none;
 }
+
 .child-node.only-child {
   padding-top: 0;
 }
+
 .parents-main-node:hover {
   background: #c8e4f8;
   color: #000;
 }
+
 .parents-mate-node:hover {
   background: #c8e4f8;
   color: #000;
 }
+
+

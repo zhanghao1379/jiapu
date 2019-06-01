@@ -13,6 +13,7 @@ Page({
     service.listRoots().then(roots => {
       console.log("roots", roots);
       if (roots.length) {
+          console.log(roots)
         this.setData({ roots });
       } else {
         //跳转添加页面
