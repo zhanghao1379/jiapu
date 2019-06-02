@@ -1,5 +1,5 @@
 <view>
-  <view class="fieldset-title">{{ myself.name }}的父母</view>
+  <view class="fieldset-title text-xxl">{{ myself.name }}的父母</view>
   <view class="form-row">
     <view class="grow layout-around">
       <view class="layout-row">
@@ -28,7 +28,7 @@
       </view>
     </view>
   </view>
-  <view class="fieldset-title">{{ myself.name }}的配偶</view>
+  <view class="fieldset-title text-xxl">{{ myself.name }}的配偶</view>
   <view
     class="form-row"
     wx:key="id"
@@ -58,7 +58,7 @@
       </block>
     </block>
   </block>
-  <view class="fieldset-title">{{ myself.name }}的子女</view>
+  <view class="fieldset-title text-xxl">{{ myself.name }}的子女</view>
   <view
     class="form-row"
     wx:key="id"

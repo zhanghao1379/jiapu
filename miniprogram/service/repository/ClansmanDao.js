@@ -141,19 +141,6 @@ ClansmanDao.prototype.selectMany = function (where = null, orderBys) {
         }
     });
 };
-ClansmanDao.prototype.selectAll = function () {
-    let query = this.db.collection(COLLECTION_TYPE)
-
-    return query.get().then(res => {
-        const rows = res.data;
-        if (rows && rows.length) {
-            console.log(rows.map(row2entity))
-            return rows.map(row2entity);
-        } else {
-            return [];
-        }
-    });
-};
 /**
  * 查找生日大于指定时间的族人
  */
@@ -173,9 +160,13 @@ ClansmanDao.prototype.selectByBirthdayGreateThan = function (bn) {
 
 ClansmanDao.prototype.selectPagination = function (pageNo, pageSize) {
     let _ = this.db.command;
+    console.log((pageNo - 1) * pageSize)
+    let skip = (pageNo - 1) * pageSize;
+    skip = skip <= 0 ? 1 : skip;
     return this.db.collection(COLLECTION_TYPE).where({
         birthday: _.neq(null)
-    }).orderBy("name", "asc").skip((pageNo - 1) * pageSize).limit(pageSize).get().then(res => {
+    }).orderBy("name", "asc").skip(skip).limit(pageSize).get().then(res => {
+        console.log(res)
         let rows = res.data;
         if (rows && rows.length) {
             return rows.map(row2entity);

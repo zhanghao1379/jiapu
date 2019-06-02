@@ -9,12 +9,11 @@ function ClansmanService() {
     this.userDao = new WechartUserDao();
 };
 
-ClansmanService.prototype.getAllRootGroup = function () {
-    const manDao = this.manDao;
-    console.log(JSON.stringify(manDao.selectAll()));
-}
-
-
+/**
+ * 添加自己
+ * @param ao
+ * @returns {Promise<ClansmanEntity>}
+ */
 ClansmanService.prototype.addMyself = function (ao) {
     const manDao = this.manDao;
     const allTasks = [];
@@ -116,9 +115,45 @@ ClansmanService.prototype.addMyself = function (ao) {
         return myself;
     });
 };
+
+/**
+ * 删除某个族人
+ * @param id
+ * @returns {*}
+ */
 ClansmanService.prototype.deleteClansman = function (id) {
     return this.manDao.deleteById(id);
 }
+
+/**
+ * 添加父亲
+ */
+ClansmanService.prototype.addFather = function (id, father) {
+    father = ao2entity(father);
+    //查找当前族人
+    return this.manDao.load(id).then(cm => {
+        //是否有母亲
+        return cm.loadMother().then(m => {
+            if (m) {
+                //级联母亲
+                father.addMateId(m.id);
+                m.addMateId(father.id);
+                //更新母亲
+                this.manDao.update(m._id, {mateIds: m.mateIds});
+
+            }
+
+            //新增父亲
+            return this.manDao.insert(father).then(f => {
+                cm.fatherId = f.id;
+                this.updateRootId(f.id);
+                return this.manDao.update(id, {fatherId: f.id});
+            });
+        });
+
+    });
+};
+
 /**
  * 添加母亲
  */
@@ -134,7 +169,7 @@ ClansmanService.prototype.addMother = function (id, mother) {
                 f.addMateId(mother.id);
                 console.log("fuq", f);
                 //更新父亲
-                this.manDao.update(f.id, {mateIds: f.mateIds});
+                this.manDao.update(f._id, {mateIds: f.mateIds});
                 //和父亲深度一致
                 mother.height = f.height;
             } else {
@@ -152,6 +187,8 @@ ClansmanService.prototype.addMother = function (id, mother) {
     })
 
 };
+
+
 ClansmanService.prototype.updateRootId = function (id) {
     return getApp().getUserInfo().then(u => {
         return this.userDao.selectOne({nickName: u.nickName}).then(wu => {
@@ -162,34 +199,7 @@ ClansmanService.prototype.updateRootId = function (id) {
     });
 };
 
-/**
- * 添加父亲
- */
-ClansmanService.prototype.addFather = function (id, father) {
-    father = ao2entity(father);
-    //查找当前族人
-    return this.manDao.load(id).then(cm => {
-        //是否有母亲
-        return cm.loadMother().then(m => {
-            if (m) {
-                //级联母亲
-                father.addMateId(m.id);
-                m.addMateId(father.id);
-                //更新母亲
-                this.manDao.update(m.id, {mateIds: m.mateIds});
 
-            }
-
-            //新增父亲
-            return this.manDao.insert(father).then(f => {
-                cm.fatherId = f.id;
-                this.updateRootId(f.id);
-                return this.manDao.update(id, {fatherId: f.id});
-            });
-        });
-
-    });
-};
 ClansmanService.prototype.addMate = function (_id, mate) {
     mate = ao2entity(mate);
     //查找当前族人
@@ -353,6 +363,7 @@ ClansmanService.prototype.listRecentBirthday = function () {
  * 分页生日提醒列表
  */
 ClansmanService.prototype.paginationListForBirthdayAlert = function (pageNo, pageSize) {
+    console.log(pageNo, pageSize)
     return this.manDao.selectPagination(pageNo, pageSize);
 }
 

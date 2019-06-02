@@ -1,5 +1,5 @@
 <view>
-    <view className='fieldset-title'>{myself.name}的父母</view>
+    <view className='fieldset-title text-xxl'>{myself.name}的父母</view>
     <view className='form-row'>
         <view className='grow layout-around'>
             <view className='layout-row'>
@@ -20,7 +20,7 @@
             </view>
         </view>
     </view>
-    <view className='fieldset-title'>{myself.name}的配偶</view>
+    <view className='fieldset-title text-xxl'>{myself.name}的配偶</view>
     {mates.map((item, index) =>
         <view className='form-row' key={item.id}>
             <label className='mate-order'>{index + 1}</label>
@@ -35,7 +35,7 @@
     </view>}
 
 
-    <view className='fieldset-title'>{myself.name}的子女</view>
+    <view className='fieldset-title text-xxl'>{myself.name}的子女</view>
     {children.map((item, index) =>
         <view className='form-row' key={item.id}>
             <label className='child-order'>{index + 1}</label>

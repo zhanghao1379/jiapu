@@ -16,10 +16,9 @@
     "pages/clansman/mod/mod-main-detail",
     "pages/clansman/mod/mod-mate",
     "pages/mine/about/about",
-    "pages/mine/index",
     "pages/mine/help/help",
     "pages/birthday/list",
-    "pages/birthday-alert/setting"
+    "pages/mine/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

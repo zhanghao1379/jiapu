@@ -8,10 +8,10 @@ Page({
         genderArray: "女,男".split(","),
         motherId: 0,
         gender: 0,
-        name: '朱瑾萱',
-        mobile: "18861715800",
+        name: '',
+        mobile: "",
         birthday: Date.formatDate(new Date()),
-        liveWhere: "黑龙江省绥化地区青冈县",
+        liveWhere: "",
         recentPhotoURL: null,
     },
     onLoad: function (options) {

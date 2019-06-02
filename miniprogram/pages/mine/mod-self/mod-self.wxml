@@ -62,14 +62,16 @@
         <label>近期照片：</label>
         <button size="mini" bindtap="handleSelectRecentPhoto">选择</button>
       </view>
-      <view class="pad">
-        <image
-          style="width:100%;"
-          mode="aspectFit"
-          name="recentPhotoURL"
-          src="{{ recentPhotoURL }}"
-        ></image>
-      </view>
+      <block wx:if="{{ recentPhotoURL }}">
+        <view class="pad">
+          <image
+            style="width:100%;"
+            mode="aspectFit"
+            name="recentPhotoURL"
+            src="{{ recentPhotoURL }}"
+          ></image>
+        </view>
+      </block>
     </scroll-view>
     <view class="pad">
       <button class="block" type="primary" form-type="submit">确定修改</button>

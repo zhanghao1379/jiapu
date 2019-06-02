@@ -45,8 +45,8 @@
                         bindchange="handleBirthDayChange">
                     <label>出生日期：</label>
 
-                    <text wx:if="{{myself.birthday}}">{myself.birthday}</text>
-                    <input placeholder='可选' wx:else></input>
+                    {myself.birthday && <text>{myself.birthday}</text>}
+                    {!myself.birthday && <input placeholder='可选'></input>}
                 </picker>
             </view>
             <view className='form-row'>
@@ -58,41 +58,45 @@
                 <label>近期照片：</label>
                 <button size='mini' bindtap='handleSelectRecentPhoto'>选择</button>
             </view>
-            <view className='pad' wx:if="{{myself.recentPhotoURL}}">
+            {myself.recentPhotoURL && <view className='pad'>
                 <image style='width:100%;' mode='aspectFit' name="recentPhotoURL"
                        src='{{myself.recentPhotoURL}}'></image>
-            </view>
+            </view>}
 
 
             <view className='fieldset-title'>我的配偶</view>
+            {mates.map((item, index) =>
+                <view className='form-row' key={item.id}>
+                    <label className='mate-order'>{index + 1}</label>
+                    <navigator className='mate-name' open-type='navigate'
+                               url='/pages/clansman/mod-mate/mod-mate?order={{index}}'> {item.name}</navigator>
+                    {index + 1 == mates.length && <button style='margin-left:1vw' className='mini'
+                                                          bindtap='handleAddMateBtnTap'>＋
+                    </button>}
+                </view>
+            )}
 
-            <view className='form-row' wx:for="{{mates}}" wx:key="id">
-                <label className='mate-order'>{index + 1}</label>
-                <navigator className='mate-name' open-type='navigate'
-                           url='/pages/clansman/mod-mate/mod-mate?order={{index}}'> {item.name}</navigator>
-                <button style='margin-left:1rem' wx:if='{{index+1==mates.length}}' className='mini'
-                        bindtap='handleAddMateBtnTap'>＋
-                </button>
-            </view>
-            <view className='form-row' wx:if="{{mates==null||mates.length==0}}">
+            {mates == null || mates.length == 0 && <view className='form-row'>
                 <button className='mini' bindtap='handleAddMateBtnTap'>＋</button>
-            </view>
+            </view>}
 
 
             <view className='fieldset-title'>我的子女</view>
-            <view className='form-row' wx:for="{{children}}" wx:key="id">
-                <label className='child-order'>{index + 1}</label>
-                <text className='child-name'>{item.name}</text>
-                <button className='mini' data-order="{{index}}" bindtap='handleDeleteChildBtnTap'>
-                    －
-                </button>
-                <button style='margin-left:1rem' wx:if='{{index+1==children.length}}' className='mini'
-                        bindtap='handleAddChildBtnTap'>＋
-                </button>
-            </view>
-            <view className='form-row' wx:if="{{children==null||children.length==0}}">
+            {children.map((item, index) =>
+                <view className='form-row' key={item.id}>
+                    <label className='child-order'>{index + 1}</label>
+                    <text className='child-name'>{item.name}</text>
+                    <button className='mini' data-order="{{index}}" bindtap='handleDeleteChildBtnTap'>
+                        －
+                    </button>
+                    {index + 1 == children.length && <button style='margin-left:1vw' className='mini'
+                                                             bindtap='handleAddChildBtnTap'>＋
+                    </button>}
+                </view>
+            )}
+            {children == null || children.length == 0 && <view className='form-row'>
                 <button className='mini' bindtap='handleAddChildBtnTap'>＋</button>
-            </view>
+            </view>}
         </scroll-view>
         <view className='pad'>
             <button className='block' type='primary' form-type="submit">确定</button>

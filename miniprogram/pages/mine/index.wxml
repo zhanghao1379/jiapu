@@ -19,11 +19,6 @@
       ><text>最近生日</text><text decode="{{ true }}">></text>
     </navigator>
     <navigator
-      url="/pages/birthday-alert/setting"
-      class="setting-item layout-justify-center"
-      ><text>生日提醒</text><text decode="{{ true }}">></text>
-    </navigator>
-    <navigator
       url="/pages/mine/help/help"
       class="setting-item layout-justify-center"
       ><text>帮助</text><text decode="{{ true }}">></text>

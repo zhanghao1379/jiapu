@@ -1,11 +1,16 @@
-<scroll-view scroll-y style='height:100vh'>
-  <block wx:if="{{list.length>0}}">
-  <view wx:for="{{list}}" wx:key="id" class="list-item">
-    <text>{{item.name}}({{item.birthday}})</text>
-    <text>{{item.when}}</text>
-  </view>
+<scroll-view scroll-y="{{ true }}" style="height:100vh">
+  <block wx:if="{{ list.length > 0 }}">
+    <view
+      wx:key="id"
+      class="list-item"
+      wx:for="{{ list }}"
+      wx:for-item="item"
+      wx:for-index="index"
+      ><text>{{ item.name }}({{ item.birthday }})</text
+      ><text>{{ item.when }}</text>
+    </view>
   </block>
-  <view style='text-align:center' wx:else>
-    暂无族人设置了生日。
-  </view>
+  <block wx:if="{{ list.length <= 0 }}">
+    <view style="text-align:center">暂无族人设置了生日。</view>
+  </block>
 </scroll-view>

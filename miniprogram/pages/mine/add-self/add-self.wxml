@@ -59,8 +59,13 @@
           value="{{ myself.birthday }}"
           bindchange="handleBirthDayChange"
         >
-          <label>出生日期：</label><text>{{ myself.birthday }}</text>
-          <input placeholder="可选" />
+          <label>出生日期：</label>
+          <block wx:if="{{ myself.birthday }}"
+            ><text>{{ myself.birthday }}</text>
+          </block>
+          <block wx:if="{{ !myself.birthday }}">
+            <input placeholder="可选" />
+          </block>
         </picker>
       </view>
       <view class="form-row">
@@ -76,16 +81,24 @@
         <label>近期照片：</label>
         <button size="mini" bindtap="handleSelectRecentPhoto">选择</button>
       </view>
-      <view class="pad">
-        <image
-          style="width:100%;"
-          mode="aspectFit"
-          name="recentPhotoURL"
-          src="{{ myself.recentPhotoURL }}"
-        ></image>
-      </view>
+      <block wx:if="{{ myself.recentPhotoURL }}">
+        <view class="pad">
+          <image
+            style="width:100%;"
+            mode="aspectFit"
+            name="recentPhotoURL"
+            src="{{ myself.recentPhotoURL }}"
+          ></image>
+        </view>
+      </block>
       <view class="fieldset-title">我的配偶</view>
-      <view class="form-row">
+      <view
+        class="form-row"
+        wx:key="id"
+        wx:for="{{ mates }}"
+        wx:for-item="item"
+        wx:for-index="index"
+      >
         <label class="mate-order">{{ index + 1 }}</label>
         <navigator
           class="mate-name"
@@ -93,19 +106,34 @@
           url="/pages/clansman/mod-mate/mod-mate?order={{ index }}"
           >{{ item.name }}</navigator
         >
-        <button
-          style="margin-left:1rem"
-          class="mini"
-          bindtap="handleAddMateBtnTap"
-        >
-          ＋
-        </button>
+        <block wx:if="{{ index + 1 == mates.length }}">
+          <button
+            style="margin-left:1vw"
+            class="mini"
+            bindtap="handleAddMateBtnTap"
+          >
+            ＋
+          </button>
+        </block>
       </view>
-      <view class="form-row">
-        <button class="mini" bindtap="handleAddMateBtnTap">＋</button>
-      </view>
+      <block>
+        <block wx:if="{{ mates == null }}">{{ mates == null }}</block>
+        <block wx:else>
+          <block wx:if="{{ mates.length == 0 }}">
+            <view class="form-row">
+              <button class="mini" bindtap="handleAddMateBtnTap">＋</button>
+            </view>
+          </block>
+        </block>
+      </block>
       <view class="fieldset-title">我的子女</view>
-      <view class="form-row">
+      <view
+        class="form-row"
+        wx:key="id"
+        wx:for="{{ children }}"
+        wx:for-item="item"
+        wx:for-index="index"
+      >
         <label class="child-order">{{ index + 1 }}</label
         ><text class="child-name">{{ item.name }}</text>
         <button
@@ -115,17 +143,26 @@
         >
           －
         </button>
-        <button
-          style="margin-left:1rem"
-          class="mini"
-          bindtap="handleAddChildBtnTap"
-        >
-          ＋
-        </button>
+        <block wx:if="{{ index + 1 == children.length }}">
+          <button
+            style="margin-left:1vw"
+            class="mini"
+            bindtap="handleAddChildBtnTap"
+          >
+            ＋
+          </button>
+        </block>
       </view>
-      <view class="form-row">
-        <button class="mini" bindtap="handleAddChildBtnTap">＋</button>
-      </view>
+      <block>
+        <block wx:if="{{ children == null }}">{{ children == null }}</block>
+        <block wx:else>
+          <block wx:if="{{ children.length == 0 }}">
+            <view class="form-row">
+              <button class="mini" bindtap="handleAddChildBtnTap">＋</button>
+            </view>
+          </block>
+        </block>
+      </block>
     </scroll-view>
     <view class="pad">
       <button class="block" type="primary" form-type="submit">确定</button>
