@@ -279,9 +279,8 @@ ClansmanService.prototype.hasClanstree = function (user) {
 ClansmanService.prototype.loadMyself = function () {
     return getApp().getUserInfo().then(u => {
         return this.userDao.selectOne({nickName: u.nickName}).then(wu => {
-
+            console.log(wu.clansmanId)
             return this.manDao.selectOne({id: wu.clansmanId});
-
         });
     });
 }

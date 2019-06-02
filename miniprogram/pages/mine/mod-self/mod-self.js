@@ -5,7 +5,7 @@ Page({
 
   data: {
 
-    genderArray: "男,女".split(","),
+    genderArray: "女,男".split(","),
     gender: 0,
     birthday: null
 
@@ -15,6 +15,7 @@ Page({
   
     
     service.loadMyself().then(cm => {
+      console.log(cm)
       let _id=cm._id;
       let id=cm.id;
       let name = cm.name;

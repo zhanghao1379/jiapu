@@ -6,9 +6,9 @@
         <text>{{fatherName}}</text>
       </view>
       <view class='form-row' >
-        <picker class='grow' range="{{motherArray}}" mode="selector" name="motherId" value="{{motherId}}" bindchange="handleMotherChange">
+        <picker class='grow' range="{{motherArray}}" range-key="name" mode="selector" name="motherId" value="{{motherId}}" bindchange="handleMotherChange">
           <label>母亲姓名：</label>
-          <text>{{motherArray[motherId]}}</text>
+          <text>{{motherName}}</text>
         </picker>
       </view>
       <view class='form-row'>

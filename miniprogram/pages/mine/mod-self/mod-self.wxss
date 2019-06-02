@@ -1,1 +1,8 @@
-/* pages/mine/mod-self/mod-self.wxss */
+.form-row label {
+  font-size: 36rpx;
+}
+.form-row text,
+.form-row input,
+.form-row button {
+  font-size: 28rpx;
+}

@@ -1,22 +1,31 @@
-<view class="child-node {{nodeOrderClass}}"  >
-  <view class='parents-node'>
-    <view class="parents-main-node" data-id='{{clansman._id}}' bindtap='handleMainNodeTap'>
-    {{clansman.name}}</view>
-
-    <view class='parents-mate-nodes' >
-      <view class='parents-mate-node'
-       wx:for='{{mates}}' wx:key='_id'       
-       bindtap='handleMateNodeTap' 
-       data-id="{{item._id}}">
-         {{item.name}}
-      </view>
+<view class="child-node {{ nodeOrderClass }}">
+  <view class="parents-node">
+    <view
+      class="parents-main-node"
+      data-id="{{ clansman._id }}"
+      bindtap="handleMainNodeTap"
+      >{{ clansman.name }}</view
+    >
+    <view class="parents-mate-nodes">
+      <view
+        class="parents-mate-node"
+        wx:key="_id"
+        bindtap="handleMateNodeTap"
+        data-id="{{ item._id }}"
+        wx:for="{{ mates }}"
+        wx:for-item="item"
+        wx:for-index="index"
+        >{{ item.name }}</view
+      >
     </view>
   </view>
-  <view class='child-nodes' wx:if='{{children.length>0}}'>
-      <clannode clansman="{{ item }}"
-          wx:for="{{ children }}"
-          wx:for-item="item"
-          wx:for-index="_id"
-        ></clannode>
+  <view class="child-nodes">
+    <clannode
+      clansman="{{ item }}"
+      wx:key="_id"
+      wx:for="{{ children }}"
+      wx:for-item="item"
+      wx:for-index="index"
+    ></clannode>
   </view>
-</view>  
+</view>

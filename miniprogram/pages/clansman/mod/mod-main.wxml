@@ -1,49 +1,106 @@
 <view>
-  <view class='fieldset-title'>{{myself.name}}的父母</view>
-  <view class='form-row'>
-    <view class='grow layout-around'>
-      <view class='layout-row'>
+  <view class="fieldset-title">{{ myself.name }}的父母</view>
+  <view class="form-row">
+    <view class="grow layout-around">
+      <view class="layout-row">
         <label>父：</label>
-        <text wx:if="{{father}}">{{father.name}}</text>
-        <navigator url='/pages/clansman/add-father/add-father'
-         wx:else>
-          ＋＋
-        </navigator>
+        <block wx:if="{{ father }}"
+          ><text>{{ father.name }}</text>
+        </block>
+        <block wx:if="{{ !father }}">
+          <navigator url="/pages/clansman/add-father/add-father"
+            >＋＋</navigator
+          >
+        </block>
       </view>
-      <view class='layout-row'>
+      <view class="layout-row">
         <label>母：</label>
-        <text wx:if="{{mother}}">{{mother.name}}</text>
-        <navigator open-type='navigate'
-         url='/pages/clansman/add-mother/add-mother'
-         wx:else> ＋＋</navigator>
+        <block wx:if="{{ mother }}"
+          ><text>{{ mother.name }}</text>
+        </block>
+        <block wx:if="{{ !mother }}">
+          <navigator
+            open-type="navigate"
+            url="/pages/clansman/add-mother/add-mother"
+            >＋＋</navigator
+          >
+        </block>
       </view>
     </view>
   </view>
-      <view class='fieldset-title'>{{myself.name}}的配偶</view>
-   <view class='form-row' wx:for="{{mates}}" wx:key="id">
-      <label class='mate-order'>{{index+1}}</label>
-      <text class='mate-name'>{{item.name}}</text>
-      <button style='margin-left:1rem' wx:if='{{index+1==mates.length}}' class='mini' bindtap='handleAddMateBtnTap'>＋</button>
-    </view>
-    <view class='form-row' wx:if="{{mates==null||mates.length==0}}">
-      <button class='mini' bindtap='handleAddMateBtnTap'>＋</button>
-    </view>
-
-
-    <view class='fieldset-title'>{{myself.name}}的子女</view>
-    <view class='form-row' wx:for="{{children}}" wx:key="id">
-      <label class='child-order'>{{index+1}}</label>
-      <text class='child-name'>{{item.name}}</text>
-     
-      <button style='margin-left:1rem' wx:if='{{index+1==children.length}}' class='mini' bindtap='handleAddChildBtnTap'>＋</button>
-    </view>
-    <view class='form-row' wx:if="{{children==null||children.length==0}}">
-      <button class='mini' bindtap='handleAddChildBtnTap'>＋</button>
-    </view>
-  <view class='pad'>
-      <button type='primary' bindtap='handleModifyBtnTap' class='block'>查看/修改{{myself.name}}个人信息</button>
-      <button wx:if="{{enableDelete}}" type='warn' style='margin-top:15px'
-      bindtap='handleDeleteBtnTap'
-       class='block'>删除{{myself.name}}</button>
+  <view class="fieldset-title">{{ myself.name }}的配偶</view>
+  <view
+    class="form-row"
+    wx:key="id"
+    wx:for="{{ mates }}"
+    wx:for-item="item"
+    wx:for-index="index"
+  >
+    <label class="mate-order">{{ index + 1 }}</label
+    ><text class="mate-name">{{ item.name }}</text>
+    <block wx:if="{{ index + 1 == mates.length }}">
+      <button
+        style="margin-left:1vw"
+        class="mini"
+        bindtap="handleAddMateBtnTap"
+      >
+        ＋
+      </button>
+    </block>
+  </view>
+  <block>
+    <block wx:if="{{ mates == null }}">{{ mates == null }}</block>
+    <block wx:else>
+      <block wx:if="{{ mates.length == 0 }}">
+        <view class="form-row">
+          <button class="mini" bindtap="handleAddMateBtnTap">＋</button>
+        </view>
+      </block>
+    </block>
+  </block>
+  <view class="fieldset-title">{{ myself.name }}的子女</view>
+  <view
+    class="form-row"
+    wx:key="id"
+    wx:for="{{ children }}"
+    wx:for-item="item"
+    wx:for-index="index"
+  >
+    <label class="child-order">{{ index + 1 }}</label
+    ><text class="child-name">{{ item.name }}</text>
+    <block wx:if="{{ index + 1 == children.length }}">
+      <button
+        style="margin-left:1vw"
+        class="mini"
+        bindtap="handleAddChildBtnTap"
+      >
+        ＋
+      </button>
+    </block>
+  </view>
+  <block>
+    <block wx:if="{{ children == null }}">{{ children == null }}</block>
+    <block wx:else>
+      <block wx:if="{{ children.length == 0 }}">
+        <view class="form-row">
+          <button class="mini" bindtap="handleAddChildBtnTap">＋</button>
+        </view>
+      </block>
+    </block>
+  </block>
+  <view class="pad">
+    <button type="primary" bindtap="handleModifyBtnTap" class="block">
+      查看/修改{{ myself.name }}个人信息
+    </button>
+    <block wx:if="{{ enableDelete }}">
+      <button
+        type="warn"
+        style="margin-top:15px"
+        bindtap="handleDeleteBtnTap"
+        class="block"
+      >
+        删除{{ myself.name }}
+      </button>
+    </block>
   </view>
 </view>

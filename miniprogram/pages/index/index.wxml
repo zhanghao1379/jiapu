@@ -4,6 +4,7 @@
   style="width:100vh;height:100vh"
 >
   <clannode
+    wx:key="_id"
     clansman="{{ item }}"
     wx:for="{{ roots }}"
     wx:for-item="item"
